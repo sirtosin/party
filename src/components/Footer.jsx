@@ -8,7 +8,7 @@ export const Footer = () => {
     <footer className="w-full bg-black/20 p-5 sm:p-10 bottom-0 flex 
     flex-col items-start lg:items-center lg:flex-row lg:justify-around ">
       <Link to="/">
-        <img src={logo} className='h-[40px] mt-5 sm:mt-0 lg:h-7' alt="" />
+        <img src={logo} className='h-[40px] mt-5 sm:mt-0 lg:w-full' alt="" />
       </Link>
 
       <div className="flex sm:items-center flex-col  sm:flex-row sm:justify-between">
