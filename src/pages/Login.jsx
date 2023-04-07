@@ -65,12 +65,12 @@ export const Login = () => {
     <>
       <Header />
  
-        <div className="w-fulll mx-20 flex flex-col items-center justify-center">
+        <div className="w-full lg:mx-20 flex flex-col items-center justify-center">
           <h2 className=" lg:text-2xl capitalize font-bold mt-5">
             become a valued member
           </h2>
           <form className=" lg:mx-auto flex flex-col space-y-1 w-full lg:w-3/4">
-            <aside className="ml-20 lg:ml-0 flex flex-col items-center lg:items-start justify-center  lg:space-x-20 lg:flex-row ">
+            <aside className="ml-16 md:ml-32 lg:ml-0 flex flex-col items-center lg:items-start justify-center  lg:space-x-20 lg:flex-row ">
               <div className="flex flex-col w-full">
                 <TextInput
                   placeholder="input your name"

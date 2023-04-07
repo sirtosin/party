@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
     const date = new Date().getFullYear()
   return (
-    <footer className="w-full bg-black/20 p-10 bottom-0 flex lg:items-center justify-around">
+    <footer className="w-full bg-black/20 p-10 bottom-0 flex lg:items-center justify-around ">
       <Link to="/">
         <img src={logo1} alt="" />
       </Link>
