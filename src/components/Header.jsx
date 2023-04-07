@@ -31,8 +31,8 @@ export const Header = () => {
       </header>
       {/* mobile */}
       <div className="flex items-center px-10 bg-gray-50 h-[80px] w-full  font-semibold capitalize justify-between lg:hidden sticky z-50 top-0 left-0">
-        <Link to="/home">
-          <div className="flex flex-1 hover:text-gray-500">home</div>
+        <Link to="/">
+          <img src={logo} alt="" />
         </Link>
         {toggle ? (
           <GrFormClose

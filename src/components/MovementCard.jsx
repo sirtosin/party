@@ -39,7 +39,7 @@ export const MovementCard = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-3">
       {data.map((item) => (
         <div
           key={item.id}

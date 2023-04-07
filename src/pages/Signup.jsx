@@ -52,8 +52,8 @@ export const Signup = () => {
   return (
     <>
     <Header/>
-      <div className=" h-screen flex items-center justify-center">
-        <form className="login-page shadow-xl w-1/3 mx-auto h-[500px] flex flex-col items-center space-y-6 justify-center">
+      <div className="flex items-center justify-center">
+        <form className="w-full lg:w-1/3 mx-auto h-[500px] flex flex-col items-center space-y-6 justify-center">
           <h2 className="text-sm lg:text-xl capitalize font-bold ">
             {" "}
             enter your registered number
