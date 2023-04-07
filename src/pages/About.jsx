@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{memo} from 'react'
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-export const  About = () => {
+export const  About = memo(() => {
   const data = [
     {
       id: 1,
@@ -130,4 +130,4 @@ export const  About = () => {
       <Footer />
     </div>
   );
-}
+})

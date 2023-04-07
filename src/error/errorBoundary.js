@@ -26,7 +26,7 @@ export class ErrorBoundary extends React.Component {
             Something went wrong.
           </h1>
 
-          <button className="btn" onClick={() => window.location.reload()}>
+          <button className=" shadow-xl p-3 rounded-2xl" onClick={() => window.location.reload()}>
             refresh
           </button>
         </div>

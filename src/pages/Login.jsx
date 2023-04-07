@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -9,7 +9,7 @@ import { Header } from "../components/Header";
 import { SelectInput } from "../components/SelectInput";
 import { bg } from "../asset";
 import BasicModal from "../components/Modal";
-export const Login = () => {
+export const Login = memo(() => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
   const [inputFile, setInputFile] = useState({
@@ -136,15 +136,15 @@ export const Login = () => {
       <Footer />
     </>
   );
-};
+});
 
 export const OldMember = ({ handleChange, inputFile }) => (
   <form className="w-3/4 lg:w-1/2 my-4 lg:ml-32">
     <TextInput
-      placeholder="input your name"
+      placeholder="input your membership number"
       onChange={handleChange}
       value={inputFile.name}
-      name="name"
+      name="membership number"
       type="text"
     />
   </form>

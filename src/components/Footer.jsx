@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
     const date = new Date().getFullYear()
   return (
-    <footer className="w-full bg-black/20 p-5 sm:p-10 bottom-0 flex lg:items-center justify-around ">
+    <footer className="w-full bg-black/20 p-5 sm:p-10 bottom-0 flex 
+    flex-col items-start lg:items-center lg:flex-row lg:justify-around ">
       <Link to="/">
-        <img src={logo} className='sm:h-7 mt-5 sm:mt-0' alt="" />
+        <img src={logo} className='h-[40px] mt-5 sm:mt-0 lg:h-7' alt="" />
       </Link>
 
-      <div className="flex  lg:items-center flex-col lg:flex-row lg:justify-between">
+      <div className="flex sm:items-center flex-col  sm:flex-row sm:justify-between">
         <div className="m-3 flex space-y-4 flex-col pl-10">
           <h2 className="text-sm lg:text-xl border-b-2 border-gray-50 w-max ">
             contact

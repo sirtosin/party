@@ -32,7 +32,7 @@ function App() {
               </ErrorBoundary>
             }
           />
-          <Route
+          {/* <Route
             path="/memb"
             element={
               <ErrorBoundary>
@@ -41,7 +41,7 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
             }
-          />
+          /> */}
           <Route
             path="/about"
             element={
