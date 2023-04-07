@@ -6,7 +6,7 @@ export const Extra = () => {
   return (
     <div>
       <Header />
-      Extra Page
+     
       <Footer />
     </div>
   );

@@ -1,10 +1,13 @@
-import { Suspense } from "react";
+import { Suspense, useEffect,lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { About, Extra, Home, Login, Signup } from "./pages";
-import {ErrorBoundary} from '../src/error/errorBoundary'
+import { ErrorBoundary } from "../src/error/errorBoundary";
+import { Loading } from "./components/Loading";
+
 
 function App() {
-
+  useEffect(() => window.scrollTo(0, 0)
+, [window]);
   return (
     <>
       <BrowserRouter>
@@ -13,7 +16,7 @@ function App() {
             path="/membership"
             element={
               <ErrorBoundary>
-                <Suspense fallback={'<Loading />'}>
+                <Suspense fallback={<Loading />}>
                   <Login />
                 </Suspense>
               </ErrorBoundary>
@@ -23,7 +26,7 @@ function App() {
             path="/"
             element={
               <ErrorBoundary>
-                <Suspense fallback={'<Loading />'}>
+                <Suspense fallback={<Loading />}>
                   <Home />
                 </Suspense>
               </ErrorBoundary>
@@ -33,7 +36,7 @@ function App() {
             path="/memb"
             element={
               <ErrorBoundary>
-                <Suspense fallback={'<Loading />'}>
+                <Suspense fallback={<Loading />}>
                   <Extra />
                 </Suspense>
               </ErrorBoundary>
@@ -43,22 +46,22 @@ function App() {
             path="/about"
             element={
               <ErrorBoundary>
-                <Suspense fallback={'<Loading />'}>
+                <Suspense fallback={<Loading />}>
                   <About />
                 </Suspense>
               </ErrorBoundary>
             }
           />
-          <Route
+          {/* <Route
             path="/member/login"
             element={
               <ErrorBoundary>
-                <Suspense fallback={'<Loading />'}>
+                <Suspense fallback={<Loading />}>
                   <Signup />
                 </Suspense>
               </ErrorBoundary>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </>

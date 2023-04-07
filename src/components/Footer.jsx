@@ -1,13 +1,13 @@
 import React from 'react'
-import { logo1 } from '../asset'
+import { logo } from '../asset'
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     const date = new Date().getFullYear()
   return (
-    <footer className="w-full bg-black/20 p-10 bottom-0 flex lg:items-center justify-around ">
+    <footer className="w-full bg-black/20 p-5 sm:p-10 bottom-0 flex lg:items-center justify-around ">
       <Link to="/">
-        <img src={logo1} alt="" />
+        <img src={logo} className='sm:h-7 mt-5 sm:mt-0' alt="" />
       </Link>
 
       <div className="flex  lg:items-center flex-col lg:flex-row lg:justify-between">

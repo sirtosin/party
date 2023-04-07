@@ -1,16 +1,16 @@
 import React from "react";
-import { bg } from "../asset";
+import { hero1 } from "../asset";
 import { Button } from "./Button";
 
 export const Hero = () => {
   return (
     <div>
-      <img className="w-full md:object-cover  md:h-[500px]" src={bg} alt="" />
-      <div className="absolute top-36 md:top-1/2 lg:top-1/3 flex md:items-center md:justify-center flex-col space-y-3 md:space-y-5 ml-12 md:ml-20 lg:ml-52 xl:left-1/4 2xl:top-56 2xl:left-[33%]">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 ">
+      <img className="w-full md:object-cover  md:h-[500px]" src={hero1} alt="" />
+      <div className="absolute top-40 sm:top-1/2 ml-10 sm:ml-32 flex flex-col space-y-4 ">
+        <h2 className="text-2xl md:text-4xl font-bold text-white">
           Leadership. Experience. Values.
         </h2>
-        <p className="md:tracking-wide uppercase text-gray-900">
+        <p className="md:tracking-wide uppercase text-white">
           NEW LEADERS FOR NEW GENERATION
         </p>
         <Button

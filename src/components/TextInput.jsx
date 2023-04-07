@@ -2,8 +2,8 @@ import React from "react";
 
 export const TextInput = ({type, placeholder, name, value,onChange}) => {
   return (
-    <>
-      <label htmlFor={name} className="my-2 font-semibold text-gray-500 capitalize">
+    <div className="flex items-start flex-col w-full">
+      <label htmlFor={name} className=" my-2 font-semibold text-gray-500 capitalize">
         {name}
       </label>
       <input
@@ -11,10 +11,10 @@ export const TextInput = ({type, placeholder, name, value,onChange}) => {
         type={type}
         placeholder={placeholder}
         name={name}
-        className="p-2 rounded border-gray-50 text-sm text-gray-500 w-3/4"
+        className="w-full lg:w-3/4 p-2 rounded border-gray-50 text-sm text-gray-500"
         value={value}
         onChange={onChange}
       />
-    </>
+    </div>
   );
 };

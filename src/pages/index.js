@@ -1,13 +1,11 @@
-// import { lazy } from "react";
+import { lazy } from "react";
 
-// const Home = lazy(() => import("./Home"));
-// const Login = lazy(() => import("./Login"));
+// const  Home = lazy(() => import("./Home"));
 // const About = lazy(() => import("./About"));
-// const Signup = lazy(() => import("./Signup"));
+// const Login = lazy(() => import("./Login"));
+// const Extra = lazy(() => import("./Extra"));
 
-// export {
-//     Home,Login,About,Signup
-// }
+// export default { Home, About, Login, Extra };
 
 export * from './About'
 export * from "./Home";
