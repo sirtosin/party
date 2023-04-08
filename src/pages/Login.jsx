@@ -12,6 +12,7 @@ import BasicModal from "../components/Modal";
 export const Login = memo(() => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
+  const [image, setImage] = useState('')
   const [inputFile, setInputFile] = useState({
     email: "",
     password: "",
@@ -115,7 +116,12 @@ export const Login = memo(() => {
           </div>
         </section>
         {topping === "new" ? (
-          <NewMember handleChange={handleChange} inputFile={inputFile} />
+          <NewMember
+            handleChange={handleChange}
+            inputFile={inputFile}
+            setImage={setImage}
+            image={image}
+          />
         ) : (
           <OldMember handleChange={handleChange} inputFile={inputFile} />
         )}
@@ -149,7 +155,7 @@ export const OldMember = ({ handleChange, inputFile }) => (
     />
   </form>
 );
-export const NewMember = ({ handleChange, inputFile }) => (
+export const NewMember = ({ handleChange, setImage, inputFile ,image}) => (
   <form className="w-3/4 lg:w-1/2 my-4 lg:ml-32">
     <TextInput
       placeholder="input your name"
@@ -202,9 +208,17 @@ export const NewMember = ({ handleChange, inputFile }) => (
     />
     <TextInput
       placeholder="input your address"
+      onChange={handleChange}
       value={inputFile.address}
       name="address"
       type="text"
+    />
+    <TextInput
+      placeholder="input your image"
+      value={image}
+      onChange={(e) => setImage(e.target.files[0])}
+      name="image upload"
+      type="file"
     />
     <SelectInput
       value={inputFile.sex}

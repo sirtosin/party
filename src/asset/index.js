@@ -4,7 +4,9 @@ import guy from "./guy.png";
 import logo from "./logo.png";
 import bg from "./bg.jpg";
 import loading from "./loading.png";
+import swiper1 from "./swiper1.jpg";
+import swiper from "./swiper.jpg";
 
 export {
-    hero,guy,logo,bg,hero1,loading
+    hero,guy,logo,bg,hero1,loading,swiper,swiper1
 }
