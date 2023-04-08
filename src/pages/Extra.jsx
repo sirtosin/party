@@ -9,11 +9,11 @@ export const Extra = () => {
     <div>
       <Header />
       <div className="flex items-center justify-center flex-col ">
-        <img src={thanks} className="w-1/4 rounded my-8" alt="" />
-        <h2 className="text-2xl font-semibold">
+        <img src={thanks} className="w-3/4 md:w-1/4 rounded my-8" alt="" />
+        <h2 className=" text-center mx-4 text-2xl font-semibold">
         Welcome to the winning team. 💯 🚀
         </h2>
-        <article className="shadow-xl rounded-lg p-4 bg-white flex flex-col w-2/3 px-20 my-8">
+        <article  className="shadow-xl rounded-lg py-4 bg-white flex flex-col w-[90%] sm:w-2/3 px-8 sm:px-20 my-8">
  <h2 className="text-center font-semibold text-gray-500 capitalize text-xl">your details are below</h2>
         <div className="flex items-center justify-between w-full m-3">
           <h2 className="font-bold capitalize ">name: </h2>

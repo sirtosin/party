@@ -1,79 +1,78 @@
-import React, { useState, memo } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { TextInput } from '../components/TextInput'
-import { Button } from '../components/Button'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import { SelectInput } from '../components/SelectInput'
-import BasicModal from '../components/Modal'
-import { addMember } from '../services/user'
+import React, { useState, memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { TextInput } from "../components/TextInput";
+import { Button } from "../components/Button";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { SelectInput } from "../components/SelectInput";
+import BasicModal from "../components/Modal";
+import { addMember } from "../services/user";
 import { LGALIST, WardList } from "../constants";
-import { Selector } from '../components/Dropdown'
+import { Selector } from "../components/Dropdown";
+import { toast } from "react-hot-toast";
 
 export const Login = memo(() => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
   const navigate = useNavigate();
   const [inputFile, setInputFile] = useState({
-    email: '',
-    phone: '',
-    ward: '',
-    LGA: '',
-    sex: '',
-    name: '',
-    occupation: '',
-    address: '',
-    state: 'lagos',
-  })
-  const [topping, setTopping] = useState('new')
-  const [openModal, setOpenModal] = useState(false)
-  const handleMesageOpen = () => setOpenModal(true)
+    email: "",
+    phone: "",
+    ward: "",
+    LGA: "",
+    sex: "",
+    name: "",
+    occupation: "",
+    address: "",
+    state: "lagos",
+  });
+  const [topping, setTopping] = useState("new");
+  const [openModal, setOpenModal] = useState(false);
+  const handleMesageOpen = () => setOpenModal(true);
   const handleClose = () => {
-    setOpenModal(false)
-    navigate('/')
-  }
+    setOpenModal(false);
+    navigate("/");
+  };
 
   const onOptionChange = (e) => {
-    setTopping(e.target.value)
-  }
+    setTopping(e.target.value);
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setInputFile({
       ...inputFile,
       [name]: value,
-    })
-  }
+    });
+  };
 
-  
   // image upload
-    const widget = (file) => {
-      const url =
-        "https://api.cloudinary.com/v1_1/dquwxckdi/auto/upload";
-      // e.preventDefault();
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("api_key", "665679589221868");
-      formData.append("upload_preset", "ub5r39y6");
-      formData.append("timestamp", new Date());
-      // formData.append("signature", signData.signature);
-      // formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
-      formData.append("folder", "fastcredit");
+  const widget = (file) => {
+    const url = "https://api.cloudinary.com/v1_1/dquwxckdi/auto/upload";
+    // e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("api_key", "665679589221868");
+    formData.append("upload_preset", "ub5r39y6");
+    formData.append("timestamp", new Date());
+    // formData.append("signature", signData.signature);
+    // formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
+    formData.append("folder", "fastcredit");
 
-      fetch(url, {
-        method: "POST",
-        body: formData,
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        return response.text();
       })
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          console.log(JSON.parse(data));
-          setImage(JSON.parse(data));
-        });
-    };
+      .then((data) => {
+        console.log(JSON.parse(data));
+        setImage(JSON.parse(data));
+      });
+  };
   const handleFileInput = (e) => {
     // handle validations
     const file = e.target.files[0];
@@ -82,28 +81,39 @@ export const Login = memo(() => {
   };
 
   const handleSubmit = (e) => {
-    setLoading(true)
-    e.preventDefault()
+    setLoading(true);
+    e.preventDefault();
     // handleMesageOpen()
-    navigate('/welcome')
 
     const payload = {
       email: inputFile.email,
       state: inputFile.state,
-      image:image.secure_url,
+      image: image.secure_url,
       address: inputFile.address,
       phone: inputFile.phone,
       name: inputFile.name,
-      ward:ward,
-      LGA:LGA,
+      ward: ward,
+      LGA: LGA,
       occupation: inputFile.occupation,
       sex: inputFile.sex,
     };
 
-localStorage.setItem('user', JSON.stringify(payload))
-  addMember(payload)
-  .then((res) => console.log('res', res))
-  .catch((err) => console.log('err', err))
+    if (
+      payload.name === "" ||
+      payload.sex === "" ||
+      payload.ward === "" ||
+      payload.address === "" ||
+      payload.phone === ""
+    ) {
+      toast.error("fill all fields");
+    } else {
+      navigate("/welcome");
+      localStorage.setItem("user", JSON.stringify(payload));
+      addMember(payload)
+        .then((res) => console.log("res", res))
+        .catch((err) => console.log("err", err));
+    }
+
     setInputFile({
       email: "",
       phone: "",
@@ -115,7 +125,7 @@ localStorage.setItem('user', JSON.stringify(payload))
       LGA: "",
       sex: "",
     });
-  }
+  };
 
   return (
     <>
@@ -195,7 +205,7 @@ localStorage.setItem('user', JSON.stringify(payload))
       <Footer />
     </>
   );
-})
+});
 
 export const OldMember = ({ handleChange, inputFile }) => (
   <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
@@ -263,7 +273,6 @@ export const OldMember = ({ handleChange, inputFile }) => (
       type="text"
     />
 
-
     <SelectInput
       value={inputFile.sex}
       onChange={handleChange}
@@ -279,7 +288,8 @@ export const NewMember = ({
   inputFile,
   ward,
   LGA,
-  setLGA,handleFileInput,
+  setLGA,
+  handleFileInput,
   setWard,
 }) => (
   <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">

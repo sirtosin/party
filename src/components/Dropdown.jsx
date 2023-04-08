@@ -17,7 +17,7 @@ export const Selector = ({ data, setSelected, selected ,selectTitle}) => {
     setCountries(data);
   }, [data, setCountries]);
   return (
-    <div className="w-3/4 font-medium h-auto shadow rounded my-3">
+    <div className="w-full sm:w-3/4 font-medium h-auto shadow rounded my-3">
       <div
         onClick={() => setOpen(!open)}
         className={`bg-white w-full p-2 flex items-center justify-between rounded ${
