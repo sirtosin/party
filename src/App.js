@@ -32,8 +32,8 @@ function App() {
               </ErrorBoundary>
             }
           />
-          {/* <Route
-            path="/memb"
+          <Route
+            path="/welcome"
             element={
               <ErrorBoundary>
                 <Suspense fallback={<Loading />}>
@@ -41,7 +41,7 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
             }
-          /> */}
+          />
           <Route
             path="/about"
             element={

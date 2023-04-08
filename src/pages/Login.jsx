@@ -1,20 +1,23 @@
 import React, { useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-hot-toast'
-import axios from 'axios'
 import { TextInput } from '../components/TextInput'
 import { Button } from '../components/Button'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { SelectInput } from '../components/SelectInput'
-import { bg } from '../asset'
 import BasicModal from '../components/Modal'
+import { addMember } from '../services/user'
+import { LGALIST, WardList } from "../constants";
+import { Selector } from '../components/Dropdown'
+
 export const Login = memo(() => {
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [image, setImage] = useState("");
+  const [LGA, setLGA] = useState("");
+  const [ward, setWard] = useState("");
+  const navigate = useNavigate();
   const [inputFile, setInputFile] = useState({
     email: '',
-    password: '',
     phone: '',
     ward: '',
     LGA: '',
@@ -47,27 +50,37 @@ export const Login = memo(() => {
   const handleSubmit = (e) => {
     setLoading(true)
     e.preventDefault()
-    handleMesageOpen()
+    // handleMesageOpen()
+    navigate('/welcome')
 
     const payload = {
       email: inputFile.email,
-      password: inputFile.password,
-    }
+      state: inputFile.state,
+      // image:image,
+      address: inputFile.address,
+      phone: inputFile.phone,
+      name: inputFile.name,
+      ward:ward,
+      LGA:LGA,
+      occupation: inputFile.occupation,
+      sex: inputFile.sex,
+    };
 
-    axios
-      .post('https://mobileapp.fastcredit-ng.com/api/Admin/login', payload)
-      .then((res) => {
-        console.log('res', res)
-      })
-      .catch((err) => {
-        console.log('err', err)
-
-        setLoading(false)
-      })
+localStorage.setItem('user', JSON.stringify(payload))
+  addMember(payload)
+  .then((res) => console.log('res', res))
+  .catch((err) => console.log('err', err))
     setInputFile({
-      email: '',
-      password: '',
-    })
+      email: "",
+      phone: "",
+      occupation: "",
+      name: "",
+      address: "",
+      state: "",
+      ward: "",
+      LGA: "",
+      sex: "",
+    });
   }
 
   return (
@@ -117,7 +130,7 @@ export const Login = memo(() => {
           </div>
         </section>
         {topping === 'new' ? (
-          <NewMember handleChange={handleChange} inputFile={inputFile} />
+          <NewMember handleChange={handleChange} inputFile={inputFile} setImage={setImage} image={image} LGA={LGA} setLGA={setLGA} ward={ward} setWard={setWard} />
         ) : (
           <OldMember handleChange={handleChange} inputFile={inputFile} />
         )}
@@ -200,19 +213,31 @@ export const OldMember = ({ handleChange, inputFile }) => (
     />
     <TextInput
       placeholder="input your address"
+      onChange={handleChange}
       value={inputFile.address}
       name="address"
       type="text"
     />
+
+
     <SelectInput
       value={inputFile.sex}
       onChange={handleChange}
-      data={['male', 'female']}
+      data={["male", "female"]}
       name="sex"
     />
   </form>
-)
-export const NewMember = ({ handleChange, inputFile }) => (
+);
+export const NewMember = ({
+  handleChange,
+  setImage,
+  image,
+  inputFile,
+  ward,
+  LGA,
+  setLGA,
+  setWard,
+}) => (
   <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
     <TextInput
       placeholder="input your name"
@@ -242,7 +267,19 @@ export const NewMember = ({ handleChange, inputFile }) => (
       name="occupation"
       type="text"
     />
-    <TextInput
+    <Selector
+      data={LGALIST}
+      selected={LGA}
+      setSelected={setLGA}
+      selectTitle="select LGA"
+    />
+    <Selector
+      data={WardList}
+      selected={ward}
+      setSelected={setWard}
+      selectTitle='select Ward'
+    />
+    {/* <TextInput
       placeholder="input your ward"
       onChange={handleChange}
       value={inputFile.ward}
@@ -255,7 +292,7 @@ export const NewMember = ({ handleChange, inputFile }) => (
       value={inputFile.LGA}
       name="LGA"
       type="text"
-    />
+    /> */}
     <TextInput
       placeholder="input your state"
       onChange={handleChange}
@@ -265,15 +302,23 @@ export const NewMember = ({ handleChange, inputFile }) => (
     />
     <TextInput
       placeholder="input your address"
+      onChange={handleChange}
       value={inputFile.address}
       name="address"
       type="text"
     />
+    <TextInput
+      placeholder="input your image"
+      // value={image}
+      onChange={(e) => setImage(e.target.files[0])}
+      name="image upload"
+      type="file"
+    />
     <SelectInput
       value={inputFile.sex}
       onChange={handleChange}
-      data={['male', 'female']}
+      data={["male", "female"]}
       name="sex"
     />
   </form>
-)
+);
