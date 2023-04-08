@@ -47,6 +47,40 @@ export const Login = memo(() => {
     })
   }
 
+  
+  // image upload
+    const widget = (file) => {
+      const url =
+        "https://api.cloudinary.com/v1_1/dquwxckdi/auto/upload";
+      // e.preventDefault();
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("api_key", "665679589221868");
+      formData.append("upload_preset", "ub5r39y6");
+      formData.append("timestamp", new Date());
+      // formData.append("signature", signData.signature);
+      // formData.append("eager", "c_pad,h_300,w_400|c_crop,h_200,w_260");
+      formData.append("folder", "fastcredit");
+
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          console.log(JSON.parse(data));
+          setImage(JSON.parse(data));
+        });
+    };
+  const handleFileInput = (e) => {
+    // handle validations
+    const file = e.target.files[0];
+    if (!file) return;
+    widget(file);
+  };
+
   const handleSubmit = (e) => {
     setLoading(true)
     e.preventDefault()
@@ -56,7 +90,7 @@ export const Login = memo(() => {
     const payload = {
       email: inputFile.email,
       state: inputFile.state,
-      // image:image,
+      image:image.secure_url,
       address: inputFile.address,
       phone: inputFile.phone,
       name: inputFile.name,
@@ -101,7 +135,7 @@ localStorage.setItem('user', JSON.stringify(payload))
               value="old"
               className="mr-3 accent-gray-500"
               id="old"
-              checked={topping === 'old'}
+              checked={topping === "old"}
               onChange={onOptionChange}
             />
             <label
@@ -118,7 +152,7 @@ localStorage.setItem('user', JSON.stringify(payload))
               value="new"
               id="new"
               className="mr-3 accent-gray-500"
-              checked={topping === 'new'}
+              checked={topping === "new"}
               onChange={onOptionChange}
             />
             <label
@@ -129,8 +163,18 @@ localStorage.setItem('user', JSON.stringify(payload))
             </label>
           </div>
         </section>
-        {topping === 'new' ? (
-          <NewMember handleChange={handleChange} inputFile={inputFile} setImage={setImage} image={image} LGA={LGA} setLGA={setLGA} ward={ward} setWard={setWard} />
+        {topping === "new" ? (
+          <NewMember
+            handleChange={handleChange}
+            inputFile={inputFile}
+            setImage={setImage}
+            image={image}
+            LGA={LGA}
+            setLGA={setLGA}
+            ward={ward}
+            setWard={setWard}
+            handleFileInput={handleFileInput}
+          />
         ) : (
           <OldMember handleChange={handleChange} inputFile={inputFile} />
         )}
@@ -143,14 +187,14 @@ localStorage.setItem('user', JSON.stringify(payload))
           <Button
             color="gray"
             onClick={handleSubmit}
-            title={topping === 'old' ? '  👉 proceed' : '  👉 become a member'}
+            title={topping === "old" ? "  👉 proceed" : "  👉 become a member"}
           />
         </div>
       </div>
 
       <Footer />
     </>
-  )
+  );
 })
 
 export const OldMember = ({ handleChange, inputFile }) => (
@@ -235,7 +279,7 @@ export const NewMember = ({
   inputFile,
   ward,
   LGA,
-  setLGA,
+  setLGA,handleFileInput,
   setWard,
 }) => (
   <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
@@ -277,7 +321,7 @@ export const NewMember = ({
       data={WardList}
       selected={ward}
       setSelected={setWard}
-      selectTitle='select Ward'
+      selectTitle="select Ward"
     />
     {/* <TextInput
       placeholder="input your ward"
@@ -309,9 +353,9 @@ export const NewMember = ({
     />
     <TextInput
       placeholder="input your image"
-      // value={image}
-      onChange={(e) => setImage(e.target.files[0])}
+      onChange={handleFileInput}
       name="image upload"
+      accept="image/*"
       type="file"
     />
     <SelectInput
