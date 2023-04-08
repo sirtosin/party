@@ -361,7 +361,7 @@ export const NewMember = ({
     <SelectInput
       value={inputFile.sex}
       onChange={handleChange}
-      data={["male", "female"]}
+      data={["Male", "Female"]}
       name="sex"
     />
   </form>
