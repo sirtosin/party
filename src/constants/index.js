@@ -8,6 +8,10 @@ export const LGALIST = [
     name: "Apapa",
   },
   {
+    id: 2,
+    name: "Agege",
+  },
+  {
     id: 3,
     name: "Ifako-Ijaye",
   },
