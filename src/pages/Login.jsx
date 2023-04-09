@@ -146,7 +146,7 @@ export const Login = memo(() => {
       )}
       <div className="w-full flex flex-col items-center justify-center bg-[#f4f6f5] ">
         <h2 className="mt-5 font-bold capitalize lg:text-2xl">
-          what member are you? 🙃
+          membership status? 🙃
         </h2>
         <section className="flex items-center my-5 space-x-10">
           <div>
