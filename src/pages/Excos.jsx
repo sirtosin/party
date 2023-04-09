@@ -8,7 +8,7 @@ export const Excos = () => {
   const [ward, setWard] = useState("");
   const [excos, setExcos] = useState([]);
   const handleShuffle = (options) => {
-    return options.slice(0,4).sort(() => Math.random() - 0.5)
+    return options.sort(() => Math.random() - 0.5).slice(0, 4);
   };
 
   useEffect(() => {
