@@ -33,7 +33,7 @@ export const Excos = () => {
       <p className="text-center text-gray-500">Team of winners and leaders</p>
 
       <section className="flex flex-wrap items-center justify-evenly my-8">
-        {excos.map((info) => (
+        {ward && excos.map((info) => (
           <div
             key={info.id}
             className="w-[300px] m-3 rounded-lg group bg-white shadow-md"
