@@ -17,6 +17,7 @@ export const Login = memo(() => {
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
   const navigate = useNavigate();
+  const [view, setView] = useState(0)
   const [inputFile, setInputFile] = useState({
     email: "",
     phone: "",
@@ -26,6 +27,7 @@ export const Login = memo(() => {
     name: "",
     occupation: "",
     address: "",
+    Membership_Number: "",
     state: "lagos",
   });
   const [topping, setTopping] = useState("new");
@@ -35,6 +37,12 @@ export const Login = memo(() => {
     setOpenModal(false);
     navigate("/");
   };
+
+  const changeView = (data) => {
+   
+    if (inputFile.Membership_Number) setView(data);
+    else toast.error("Enter membership number to proceed");
+  }
 
   const onOptionChange = (e) => {
     setTopping(e.target.value);
@@ -178,16 +186,25 @@ export const Login = memo(() => {
           <NewMember
             handleChange={handleChange}
             inputFile={inputFile}
-            setImage={setImage}
-            image={image}
             LGA={LGA}
             setLGA={setLGA}
             ward={ward}
             setWard={setWard}
             handleFileInput={handleFileInput}
+            handleSubmit={handleSubmit}
           />
         ) : (
-          <OldMember handleChange={handleChange} inputFile={inputFile} />
+          <OldMember
+            handleChange={handleChange}
+            LGA={LGA}
+            setLGA={setLGA}
+            ward={ward}
+            setWard={setWard}
+            inputFile={inputFile}
+            handleFileInput={handleFileInput}
+            changeView={changeView}
+            view={view}
+          />
         )}
         <div className="flex flex-col items-center justify-center mt-10 mb-10 space-y-3 lg:mt-0">
           {/* <Link to="/member/login">
@@ -195,11 +212,6 @@ export const Login = memo(() => {
               👉 Existing member? login here
             </p>
           </Link> */}
-          <Button
-            color="gray"
-            onClick={handleSubmit}
-            title={topping === "old" ? "  👉 proceed" : "  👉 become a member"}
-          />
         </div>
       </div>
 
@@ -208,44 +220,84 @@ export const Login = memo(() => {
   );
 });
 
-export const OldMember = ({ handleChange, inputFile }) => (
-  <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
-    <TextInput
-      placeholder="input your membership number"
-      onChange={handleChange}
-      value={inputFile.name}
-      name="membership number"
-      type="text"
-    />
-    <TextInput
-      placeholder="input your name"
-      onChange={handleChange}
-      value={inputFile.name}
-      name="name"
-      type="text"
-    />
-    <TextInput
-      placeholder="input your email"
-      onChange={handleChange}
-      value={inputFile.email}
-      name="email"
-      type="email"
-    />
-    <TextInput
-      placeholder="input your phone"
-      onChange={handleChange}
-      value={inputFile.phone}
-      name="phone"
-      type="tel"
-    />
-    <TextInput
-      placeholder="input your occupation"
-      onChange={handleChange}
-      value={inputFile.occupation}
-      name="occupation"
-      type="text"
-    />
-    <TextInput
+export const OldMember = ({
+  handleChange,
+  inputFile,
+  changeView,
+  ward,
+  LGA,
+  setWard,
+  handleFileInput,
+  setLGA,
+  view,
+}) => (
+  <>
+    <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
+      {view === 1 ? (
+        <>
+          <TextInput
+            placeholder="input your name"
+            onChange={handleChange}
+            value={inputFile.name}
+            name="name"
+            type="text"
+          />
+          <TextInput
+            placeholder="input your email"
+            onChange={handleChange}
+            value={inputFile.email}
+            name="email"
+            type="email"
+          />
+          <TextInput
+            placeholder="input your phone"
+            onChange={handleChange}
+            value={inputFile.phone}
+            name="phone"
+            type="tel"
+          />
+          <SelectInput
+            value={inputFile.sex}
+            onChange={handleChange}
+            data={["Male", "Female"]}
+            name="sex"
+          />
+          <TextInput
+            placeholder="input your occupation"
+            onChange={handleChange}
+            value={inputFile.occupation}
+            name="occupation"
+            type="text"
+          />
+
+          <TextInput
+            placeholder="input your address"
+            onChange={handleChange}
+            value={inputFile.address}
+            name="address"
+            type="text"
+          />
+
+          <TextInput
+            placeholder="input your state"
+            // onChange={handleChange}
+            value={inputFile.state}
+            name="state"
+            type="text"
+          />
+          <Selector
+            data={LGALIST}
+            selected={LGA}
+            setSelected={setLGA}
+            selectTitle="select LGA"
+          />
+          <Selector
+            data={WardList}
+            selected={ward}
+            setSelected={setWard}
+            selectTitle="select Ward"
+          />
+          {/* <TextInput
       placeholder="input your ward"
       onChange={handleChange}
       value={inputFile.ward}
@@ -258,42 +310,48 @@ export const OldMember = ({ handleChange, inputFile }) => (
       value={inputFile.LGA}
       name="LGA"
       type="text"
-    />
-    <TextInput
-      placeholder="input your state"
-      onChange={handleChange}
-      value={inputFile.state}
-      name="state"
-      type="text"
-    />
-    <TextInput
-      placeholder="input your address"
-      onChange={handleChange}
-      value={inputFile.address}
-      name="address"
-      type="text"
-    />
+    /> */}
 
-    <SelectInput
-      value={inputFile.sex}
-      onChange={handleChange}
-      data={["male", "female"]}
-      name="sex"
-    />
-  </form>
+          {/* <TextInput
+            placeholder="input your image"
+            onChange={handleFileInput}
+            name="image upload"
+            accept="image/*"
+            type="file"
+          /> */}
+        </>
+      ) : (
+        <TextInput
+          placeholder="input your membership number"
+          onChange={handleChange}
+          value={inputFile.Membership_Number}
+          name="Membership_Number"
+          type="text"
+        />
+      )}
+    </form>
+    <div className="flex items-center justify-center">
+      <Button
+        color="gray"
+        onClick={() => changeView(1)}
+        title={"  👉 proceed"}
+      />
+    </div>
+  </>
 );
 export const NewMember = ({
   handleChange,
-  setImage,
-  image,
   inputFile,
   ward,
   LGA,
   setLGA,
   handleFileInput,
-  setWard,
+  handleSubmit,
+  setWard
 }) => (
+  <>
   <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
+    <h2 className="font-semibold capitalize text-xs">fields with <span className="required"> </span> are required</h2>
     <TextInput
       placeholder="input your name"
       onChange={handleChange}
@@ -379,4 +437,12 @@ export const NewMember = ({
       type="file"
     />
   </form>
+      <div className="flex items-center justify-center">
+      <Button
+        color="gray"
+        onClick={handleSubmit}
+        title={ " 👉 become a member"}
+      />
+    </div>
+  </>
 );
