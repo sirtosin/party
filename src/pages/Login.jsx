@@ -14,6 +14,7 @@ import { toast } from "react-hot-toast";
 export const Login = memo(() => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
+  const [memberNumber, setMemberNumber] = useState('')
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ export const Login = memo(() => {
     sex: "",
     name: "",
     occupation: "",
-    address: "",
-    Membership_Number: "",
+    address: "",previous_Party:'',
+    MembershipNumber: "",
     state: "Lagos",
   });
   const [topping, setTopping] = useState("new");
@@ -39,7 +40,7 @@ export const Login = memo(() => {
   };
 
   const changeView = (data) => {
-    if (inputFile.Membership_Number) setView(data);
+    if (memberNumber) setView(data);
     else toast.error("Enter membership number to proceed");
   };
 
@@ -201,6 +202,8 @@ export const Login = memo(() => {
             handleSubmit={handleSubmit}
             setWard={setWard}
             inputFile={inputFile}
+            memberNumber={memberNumber}
+            setMemberNumber={setMemberNumber}
             handleFileInput={handleFileInput}
             changeView={changeView}
             view={view}
@@ -228,14 +231,16 @@ export const OldMember = ({
   LGA,
   setWard,
   handleFileInput,
+  setMemberNumber,
   handleSubmit,
   setLGA,
+  memberNumber,
   view,
 }) => (
   <>
     <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
       <h2 className="my-2 font-semibold text-gray-500 capitalize">
-        fields with <span className="required"> </span> are required
+        fields with <span className="text-red-500"> *</span> are required
       </h2>
       {view === 1 ? (
         <>
@@ -311,6 +316,14 @@ export const OldMember = ({
                 : null
             )}
           </select>
+          <TextInput
+            placeholder="input your previous_Party"
+            onChange={handleChange}
+            value={inputFile.previous_Party}
+            name="previous_Party"
+            type="text"
+          />
+
           {/* <Selector
             data={WardList2}
             selected={ward}
@@ -347,10 +360,10 @@ export const OldMember = ({
         <>
           <TextInput
             placeholder="input your membership number"
-            onChange={handleChange}
-            value={inputFile.Membership_Number}
-            name="Membership_Number"
-            type="text"
+            onChange={(e) => setMemberNumber(e.target.value)}
+            value={memberNumber}
+            name="Membership Number"
+            type="number"
           />
           <div className="flex items-center justify-center  w-full mx-auto my-4 lg:-ml-20">
             <Button
@@ -377,7 +390,7 @@ export const NewMember = ({
   <>
     <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
       <h2 className="my-2 font-semibold text-gray-500 capitalize">
-        fields with <span className="required"> </span> are required
+        fields with <span className="text-red-500"> *</span> are required
       </h2>
       <TextInput
         placeholder="input your name"
@@ -471,6 +484,13 @@ export const NewMember = ({
       name="LGA"
       type="text"
     /> */}
+      <TextInput
+        placeholder="input your previous_Party"
+        onChange={handleChange}
+        value={inputFile.previous_Party}
+        name="previous_Party"
+        type="text"
+      />
 
       <TextInput
         placeholder="input your image"

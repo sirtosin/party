@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom/dist";
 import { EXCOS } from "../constants";
+import { Vision } from "../components/Vision";
 
 export const About = memo(() => {
   const navigate = useNavigate();
@@ -18,11 +19,12 @@ export const About = memo(() => {
         src="https://fastcredit-ng.com/static/media/aboutpictures.22237054203d1eac46b7.png"
         alt=""
       />
-      <h2 className="text-2xl lg:text-4xl font-black text-center">
+      <Vision/>
+      <h2 className="text-2xl lg:text-4xl font-black text-center mt-20">
         Meet our team
       </h2>
       <p className="text-center text-gray-500">Team of winners and leaders</p>
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end mr-10">
         <Button
           color="gray"
           onClick={handleNavigate}

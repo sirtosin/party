@@ -1509,3 +1509,18 @@ export const WardList2 = [
     ],
   },
 ];
+
+export const missionData = [
+  "Programs and policies aimed at ensuring that national cohesion, peace, security, stability and prosperity shall be the collective concern of all because most Nigerians would be made to realistically feel, believe and see that Nigeria cares, inspires and exists for all.",
+  "All processes aimed at entrenching a culture of democracy and development politics",
+  "All processes aimed at contesting elections",
+  "Transforming the Party into a vanguard for the defense and sustenance of democracy",
+];
+export const visionData = [
+  "Ensure job-led growth and transform the economy.",
+  "Overcome under development, vicious backwardness and the paradox of poverty in a wealthy Nation.",
+  "Redress the extremes of affluence and deprivation",
+  "Guarantee social justice for all",
+  "Cultivate a new Nigerian and African Personality.",
+  "Build a knowledge-based society.",
+];
