@@ -40,3 +40,35 @@ border: 1px solid rgba(246, 249, 246, 0.26);
   right: 20px;
   cursor: pointer;
 }
+
+  .required:before {
+            content: "*";
+            font-weight: bold;
+            color: red;
+        }
+        
+
+        input[type=text][required],
+input[type=password][required],
+input[type=tel][required] {
+    background-image: var(--icon-required);
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+--icon-required: url('data:image/svg+xml,\
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="-10 -6 16 16"> \
+  <line id="line" y1="-3" y2="3" stroke="%23df0000" stroke-linecap="butt" transform="rotate(15)"></line> \
+  <line id="line" y1="-3" y2="3" stroke="%23df0000" stroke-linecap="butt" transform="rotate(75)"></line> \
+  <line id="line" y1="-3" y2="3" stroke="%23df0000" stroke-linecap="butt" transform="rotate(-45)"></line> \
+</svg>');
+
+--icon-tick: url('data:image/svg+xml,\
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="-2 -2 16 16"> \
+            <path fill="green" stroke-linejoin="round" d="M2 6L1 7l3 4 7-10h-1L4 8z"/> \
+</svg>');
+}
+
+input:valid {
+    --icon-required: var(--icon-tick);
+    
+}

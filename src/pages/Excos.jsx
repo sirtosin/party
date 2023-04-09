@@ -1,36 +1,39 @@
-import React, { memo, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { EXCOS, WardList } from "../constants";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { Button } from "../components/Button";
-import { useNavigate } from "react-router-dom/dist";
-import { EXCOS } from "../constants";
+import { Selector } from "../components/Dropdown";
 
-export const About = memo(() => {
-  const navigate = useNavigate();
-  const handleNavigate = () => navigate("/excos");
+export const Excos = () => {
+  const [ward, setWard] = useState("");
+  const [excos, setExcos] = useState([]);
+  const handleShuffle = (options) => {
+    return options.slice(0,4).sort(() => Math.random() - 0.5)
+  };
+
+  useEffect(() => {
+    setExcos(handleShuffle(EXCOS));
+  }, [ward]);
 
   return (
     <div>
       <Header />
-      <img
-        loading="lazy"
-        className="w-full mb-10"
-        src="https://fastcredit-ng.com/static/media/aboutpictures.22237054203d1eac46b7.png"
-        alt=""
-      />
-      <h2 className="text-2xl lg:text-4xl font-black text-center">
-        Meet our team
-      </h2>
-      <p className="text-center text-gray-500">Team of winners and leaders</p>
-      <div className="flex items-center justify-end">
-        <Button
-          color="gray"
-          onClick={handleNavigate}
-          title="view excos by ward"
+      <div className="flex items-center justify-center">
+        <Selector
+          data={WardList}
+          selected={ward}
+          setSelected={setWard}
+          selectTitle="select Ward"
         />
       </div>
+
+      <h2 className="text-2xl lg:text-4xl font-black text-center">
+        Meet our representatives
+      </h2>
+      <p className="text-center text-gray-500">Team of winners and leaders</p>
+
       <section className="flex flex-wrap items-center justify-evenly my-8">
-        {EXCOS.slice(0, 10).map((info) => (
+        {excos.map((info) => (
           <div
             key={info.id}
             className="w-[300px] m-3 rounded-lg group bg-white shadow-md"
@@ -52,4 +55,4 @@ export const About = memo(() => {
       <Footer />
     </div>
   );
-});
+};

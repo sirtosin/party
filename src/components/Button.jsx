@@ -7,8 +7,7 @@ export const Button = ({title, onClick,color}) => {
     style={{
         background:color
     }}
-    type='button'
-    role='button'
+    type='submit'
     onClick={onClick}
     >{title}</button>
   )

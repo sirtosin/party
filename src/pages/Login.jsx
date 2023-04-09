@@ -110,21 +110,22 @@ export const Login = memo(() => {
       navigate("/welcome");
       localStorage.setItem("user", JSON.stringify(payload));
       addMember(payload)
-        .then((res) => console.log("res", res))
+        .then((res) => {
+          console.log("res", res);
+          setInputFile({
+            email: "",
+            phone: "",
+            occupation: "",
+            name: "",
+            address: "",
+            state: "",
+            ward: "",
+            LGA: "",
+            sex: "",
+          });
+        })
         .catch((err) => console.log("err", err));
     }
-
-    setInputFile({
-      email: "",
-      phone: "",
-      occupation: "",
-      name: "",
-      address: "",
-      state: "",
-      ward: "",
-      LGA: "",
-      sex: "",
-    });
   };
 
   return (
@@ -314,11 +315,33 @@ export const NewMember = ({
       name="phone"
       type="tel"
     />
+    <SelectInput
+      value={inputFile.sex}
+      onChange={handleChange}
+      data={["Male", "Female"]}
+      name="sex"
+    />
     <TextInput
       placeholder="input your occupation"
       onChange={handleChange}
       value={inputFile.occupation}
       name="occupation"
+      type="text"
+    />
+
+    <TextInput
+      placeholder="input your address"
+      onChange={handleChange}
+      value={inputFile.address}
+      name="address"
+      type="text"
+    />
+
+    <TextInput
+      placeholder="input your state"
+      // onChange={handleChange}
+      value={inputFile.state}
+      name="state"
       type="text"
     />
     <Selector
@@ -347,32 +370,13 @@ export const NewMember = ({
       name="LGA"
       type="text"
     /> */}
-    <TextInput
-      placeholder="input your state"
-      onChange={handleChange}
-      value={inputFile.state}
-      name="state"
-      type="text"
-    />
-    <TextInput
-      placeholder="input your address"
-      onChange={handleChange}
-      value={inputFile.address}
-      name="address"
-      type="text"
-    />
+
     <TextInput
       placeholder="input your image"
       onChange={handleFileInput}
       name="image upload"
       accept="image/*"
       type="file"
-    />
-    <SelectInput
-      value={inputFile.sex}
-      onChange={handleChange}
-      data={["Male", "Female"]}
-      name="sex"
     />
   </form>
 );

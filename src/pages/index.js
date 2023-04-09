@@ -12,3 +12,4 @@ export * from "./Home";
 export * from './Signup'
 export * from "./Extra";
 export * from "./Login";
+export * from "./Excos";

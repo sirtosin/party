@@ -1,6 +1,6 @@
 import { Suspense, useEffect,lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { About, Extra, Home, Login, Signup } from "./pages";
+import { About, Excos, Extra, Home, Login, Signup } from "./pages";
 import { ErrorBoundary } from "../src/error/errorBoundary";
 import { Loading } from "./components/Loading";
 
@@ -52,16 +52,16 @@ function App() {
               </ErrorBoundary>
             }
           />
-          {/* <Route
-            path="/member/login"
+          <Route
+            path="/excos"
             element={
               <ErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <Signup />
+                  <Excos />
                 </Suspense>
               </ErrorBoundary>
             }
-          /> */}
+          />
         </Routes>
       </BrowserRouter>
     </>
