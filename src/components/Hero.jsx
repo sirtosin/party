@@ -51,7 +51,7 @@ export const Hero = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="absolute flex flex-col ml-10 space-y-4 top-40 sm:top-60 sm:ml-32 ">
+      <div className="absolute flex flex-col ml-10 space-y-4 top-32  sm:top-60 sm:ml-32 ">
         <h2 className="text-2xl font-bold text-white md:text-4xl">
           Leadership. Experience. Values.
         </h2>
