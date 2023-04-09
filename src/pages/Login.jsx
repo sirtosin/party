@@ -17,7 +17,7 @@ export const Login = memo(() => {
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
   const navigate = useNavigate();
-  const [view, setView] = useState(0)
+  const [view, setView] = useState(0);
   const [inputFile, setInputFile] = useState({
     email: "",
     phone: "",
@@ -39,10 +39,9 @@ export const Login = memo(() => {
   };
 
   const changeView = (data) => {
-   
     if (inputFile.Membership_Number) setView(data);
     else toast.error("Enter membership number to proceed");
-  }
+  };
 
   const onOptionChange = (e) => {
     setTopping(e.target.value);
@@ -199,6 +198,7 @@ export const Login = memo(() => {
             LGA={LGA}
             setLGA={setLGA}
             ward={ward}
+            handleSubmit={handleSubmit}
             setWard={setWard}
             inputFile={inputFile}
             handleFileInput={handleFileInput}
@@ -228,6 +228,7 @@ export const OldMember = ({
   LGA,
   setWard,
   handleFileInput,
+  handleSubmit,
   setLGA,
   view,
 }) => (
@@ -319,24 +320,29 @@ export const OldMember = ({
             accept="image/*"
             type="file"
           /> */}
+          <div className="flex items-center justify-center  w-full mx-auto my-4 lg:-ml-20">
+            <Button color="gray" onClick={handleSubmit} title={"  👉 submit"} />
+          </div>
         </>
       ) : (
-        <TextInput
-          placeholder="input your membership number"
-          onChange={handleChange}
-          value={inputFile.Membership_Number}
-          name="Membership_Number"
-          type="text"
-        />
+        <>
+          <TextInput
+            placeholder="input your membership number"
+            onChange={handleChange}
+            value={inputFile.Membership_Number}
+            name="Membership_Number"
+            type="text"
+          />
+          <div className="flex items-center justify-center  w-full mx-auto my-4 lg:-ml-20">
+            <Button
+              color="gray"
+              onClick={() => changeView(1)}
+              title={"  👉 proceed"}
+            />
+          </div>
+        </>
       )}
     </form>
-    <div className="flex items-center justify-center">
-      <Button
-        color="gray"
-        onClick={() => changeView(1)}
-        title={"  👉 proceed"}
-      />
-    </div>
   </>
 );
 export const NewMember = ({
@@ -347,74 +353,76 @@ export const NewMember = ({
   setLGA,
   handleFileInput,
   handleSubmit,
-  setWard
+  setWard,
 }) => (
   <>
-  <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
-    <h2 className="font-semibold capitalize text-xs">fields with <span className="required"> </span> are required</h2>
-    <TextInput
-      placeholder="input your name"
-      onChange={handleChange}
-      value={inputFile.name}
-      name="name"
-      type="text"
-    />
-    <TextInput
-      placeholder="input your email"
-      onChange={handleChange}
-      value={inputFile.email}
-      name="email"
-      type="email"
-    />
-    <TextInput
-      placeholder="input your phone"
-      onChange={handleChange}
-      value={inputFile.phone}
-      name="phone"
-      type="tel"
-    />
-    <SelectInput
-      value={inputFile.sex}
-      onChange={handleChange}
-      data={["Male", "Female"]}
-      name="sex"
-    />
-    <TextInput
-      placeholder="input your occupation"
-      onChange={handleChange}
-      value={inputFile.occupation}
-      name="occupation"
-      type="text"
-    />
+    <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
+      <h2 className="font-semibold capitalize text-xs">
+        fields with <span className="required"> </span> are required
+      </h2>
+      <TextInput
+        placeholder="input your name"
+        onChange={handleChange}
+        value={inputFile.name}
+        name="name"
+        type="text"
+      />
+      <TextInput
+        placeholder="input your email"
+        onChange={handleChange}
+        value={inputFile.email}
+        name="email"
+        type="email"
+      />
+      <TextInput
+        placeholder="input your phone"
+        onChange={handleChange}
+        value={inputFile.phone}
+        name="phone"
+        type="tel"
+      />
+      <SelectInput
+        value={inputFile.sex}
+        onChange={handleChange}
+        data={["Male", "Female"]}
+        name="sex"
+      />
+      <TextInput
+        placeholder="input your occupation"
+        onChange={handleChange}
+        value={inputFile.occupation}
+        name="occupation"
+        type="text"
+      />
 
-    <TextInput
-      placeholder="input your address"
-      onChange={handleChange}
-      value={inputFile.address}
-      name="address"
-      type="text"
-    />
+      <TextInput
+        placeholder="input your address"
+        onChange={handleChange}
+        value={inputFile.address}
+        name="address"
+        type="text"
+      />
 
-    <TextInput
-      placeholder="input your state"
-      // onChange={handleChange}
-      value={inputFile.state}
-      name="state"
-      type="text"
-    />
-    <Selector
-      data={LGALIST}
-      selected={LGA}
-      setSelected={setLGA}
-      selectTitle="select LGA"
-    />
-    <Selector
-      data={WardList}
-      selected={ward}
-      setSelected={setWard}
-      selectTitle="select Ward"
-    />
-    {/* <TextInput
+      <TextInput
+        placeholder="input your state"
+        // onChange={handleChange}
+        value={inputFile.state}
+        name="state"
+        type="text"
+      />
+      <Selector
+        data={LGALIST}
+        selected={LGA}
+        setSelected={setLGA}
+        selectTitle="select LGA"
+      />
+      <Selector
+        data={WardList}
+        selected={ward}
+        setSelected={setWard}
+        selectTitle="select Ward"
+      />
+      {/* <TextInput
       placeholder="input your ward"
       onChange={handleChange}
       value={inputFile.ward}
@@ -429,19 +437,19 @@ export const NewMember = ({
       type="text"
     /> */}
 
-    <TextInput
-      placeholder="input your image"
-      onChange={handleFileInput}
-      name="image upload"
-      accept="image/*"
-      type="file"
-    />
-  </form>
-      <div className="flex items-center justify-center">
+      <TextInput
+        placeholder="input your image"
+        onChange={handleFileInput}
+        name="image upload"
+        accept="image/*"
+        type="file"
+      />
+    </form>
+    <div className="flex items-center justify-center">
       <Button
         color="gray"
         onClick={handleSubmit}
-        title={ " 👉 become a member"}
+        title={" 👉 become a member"}
       />
     </div>
   </>
