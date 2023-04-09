@@ -357,7 +357,7 @@ export const NewMember = ({
 }) => (
   <>
     <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
-      <h2 className="font-semibold capitalize text-xs">
+      <h2 className="my-2 font-semibold text-gray-500 capitalize">
         fields with <span className="required"> </span> are required
       </h2>
       <TextInput

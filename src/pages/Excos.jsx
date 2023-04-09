@@ -18,7 +18,12 @@ export const Excos = () => {
   return (
     <div>
       <Header />
-      <div className="flex items-center justify-center">
+
+      <h2 className="text-2xl lg:text-4xl font-black text-center mt-10">
+        Meet our representatives
+      </h2>
+      <p className="text-center text-gray-500">Team of winners and leaders</p>
+      <div className="flex items-center justify-center mt-10">
         <Selector
           data={WardList}
           selected={ward}
@@ -26,30 +31,25 @@ export const Excos = () => {
           selectTitle="select Ward"
         />
       </div>
-
-      <h2 className="text-2xl lg:text-4xl font-black text-center">
-        Meet our representatives
-      </h2>
-      <p className="text-center text-gray-500">Team of winners and leaders</p>
-
       <section className="flex flex-wrap items-center justify-evenly my-8">
-        {ward && excos.map((info) => (
-          <div
-            key={info.id}
-            className="w-[300px] m-3 rounded-lg group bg-white shadow-md"
-          >
-            <img
-              loading="lazy"
-              className="w-full rounded-t-lg shadow-sm"
-              src={info.img}
-              alt={info.name}
-            />
-            <div className="p-4">
-              <h2 className="font-semibold text-sm">{info.name}</h2>
-              <p className="text-xs ">{info.tilte}</p>
+        {ward &&
+          excos.map((info) => (
+            <div
+              key={info.id}
+              className="w-[300px] m-3 rounded-lg group bg-white shadow-md"
+            >
+              <img
+                loading="lazy"
+                className="w-full rounded-t-lg shadow-sm"
+                src={info.img}
+                alt={info.name}
+              />
+              <div className="p-4">
+                <h2 className="font-semibold text-sm">{info.name}</h2>
+                <p className="text-xs ">{info.tilte}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </section>
 
       <Footer />
