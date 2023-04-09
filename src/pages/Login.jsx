@@ -7,13 +7,14 @@ import { Header } from "../components/Header";
 import { SelectInput } from "../components/SelectInput";
 import BasicModal from "../components/Modal";
 import { addMember } from "../services/user";
-import { LGALIST, WardList2 } from "../constants";
+import { LGALIST, WardList2, politicalParty } from "../constants";
 import { Selector } from "../components/Dropdown";
 import { toast } from "react-hot-toast";
 
 export const Login = memo(() => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
+  const [party, setParty] = useState("");
   const [memberNumber, setMemberNumber] = useState('')
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
@@ -103,6 +104,7 @@ export const Login = memo(() => {
       ward: ward,
       LGA: LGA,
       occupation: inputFile.occupation,
+    party:party,
       sex: inputFile.sex,
     };
 
@@ -190,6 +192,7 @@ export const Login = memo(() => {
             setLGA={setLGA}
             ward={ward}
             setWard={setWard}
+            setParty={setParty}
             handleFileInput={handleFileInput}
             handleSubmit={handleSubmit}
           />
@@ -202,6 +205,7 @@ export const Login = memo(() => {
             handleSubmit={handleSubmit}
             setWard={setWard}
             inputFile={inputFile}
+            setParty={setParty}
             memberNumber={memberNumber}
             setMemberNumber={setMemberNumber}
             handleFileInput={handleFileInput}
@@ -235,6 +239,7 @@ export const OldMember = ({
   handleSubmit,
   setLGA,
   memberNumber,
+  setParty,
   view,
 }) => (
   <>
@@ -316,13 +321,27 @@ export const OldMember = ({
                 : null
             )}
           </select>
-          <TextInput
-            placeholder="input your previous_Party"
-            onChange={handleChange}
-            value={inputFile.previous_Party}
-            name="previous_Party"
-            type="text"
-          />
+          <div className="flex flex-col space-y-2">
+            <label
+              htmlFor="party"
+              className="my-2 font-semibold text-gray-500 capitalize"
+            >
+              previous political party
+            </label>
+            <select
+              name="party"
+              className="w-full sm:w-3/4 font-medium h-auto shadow rounded my-3 p-2"
+              required
+              onChange={(e) => setParty(e.target.value)}
+            >
+              <option value="">select party </option>
+              {politicalParty.map((res) => (
+                <option className="capitalize" key={res} value={res}>
+                  {res}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* <Selector
             data={WardList2}
@@ -383,6 +402,7 @@ export const NewMember = ({
   ward,
   LGA,
   setLGA,
+  setParty,
   handleFileInput,
   handleSubmit,
   setWard,
@@ -484,14 +504,28 @@ export const NewMember = ({
       name="LGA"
       type="text"
     /> */}
-      <TextInput
-        placeholder="input your previous_Party"
-        onChange={handleChange}
-        value={inputFile.previous_Party}
-        name="previous_Party"
-        type="text"
-      />
 
+      <div className="flex flex-col space-y-2">
+        <label
+          htmlFor="party"
+          className="my-2 font-semibold text-gray-500 capitalize"
+        >
+         previous political party
+        </label>
+        <select
+          name="party"
+          className="w-full sm:w-3/4 font-medium h-auto shadow rounded my-3 p-2"
+          required
+          onChange={(e) => setParty(e.target.value)}
+        >
+          <option value="">select party </option>
+          {politicalParty.map((res) => (
+            <option className="capitalize" key={res} value={res}>
+              {res}
+            </option>
+          ))}
+        </select>
+      </div>
       <TextInput
         placeholder="input your image"
         onChange={handleFileInput}
