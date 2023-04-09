@@ -28,7 +28,7 @@ export const Login = memo(() => {
     occupation: "",
     address: "",
     Membership_Number: "",
-    state: "lagos",
+    state: "Lagos",
   });
   const [topping, setTopping] = useState("new");
   const [openModal, setOpenModal] = useState(false);
