@@ -7,7 +7,7 @@ import { Header } from "../components/Header";
 import { SelectInput } from "../components/SelectInput";
 import BasicModal from "../components/Modal";
 import { addMember } from "../services/user";
-import { LGALIST, WardList } from "../constants";
+import { LGALIST, WardList2 } from "../constants";
 import { Selector } from "../components/Dropdown";
 import { toast } from "react-hot-toast";
 
@@ -292,12 +292,28 @@ export const OldMember = ({
             setSelected={setLGA}
             selectTitle="select LGA"
           />
-          <Selector
-            data={WardList}
+          <select
+            name="ward"
+            className="w-full sm:w-3/4 font-medium h-auto shadow rounded my-3 p-2"
+            onChange={(e) => setWard(e.target.value)}
+          >
+            <option value="">select ward</option>
+            {WardList2.map((ward) => (
+              ward.lga === LGA
+                ? ward.name.map((res) => (
+                    <option key={res} value={res}>
+                      {res}
+                    </option>
+                  ))
+                : null
+            ))}
+          </select>
+          {/* <Selector
+            data={WardList2}
             selected={ward}
             setSelected={setWard}
             selectTitle="select Ward"
-          />
+          /> */}
           {/* <TextInput
       placeholder="input your ward"
       onChange={handleChange}
@@ -416,12 +432,28 @@ export const NewMember = ({
         setSelected={setLGA}
         selectTitle="select LGA"
       />
-      <Selector
-        data={WardList}
+      <select
+        name="ward"
+        className="w-full sm:w-3/4 font-medium h-auto shadow rounded my-3 p-2"
+        onChange={(e) => setWard(e.target.value)}
+      >
+        <option value="">select ward</option>
+        {WardList2.map((ward) =>
+          ward.lga === LGA
+            ? ward.name.map((res) => (
+                <option key={res} value={res}>
+                  {res}
+                </option>
+              ))
+            : null
+        )}
+      </select>
+      {/* <Selector
+        data={WardList2}
         selected={ward}
         setSelected={setWard}
         selectTitle="select Ward"
-      />
+      /> */}
       {/* <TextInput
       placeholder="input your ward"
       onChange={handleChange}
