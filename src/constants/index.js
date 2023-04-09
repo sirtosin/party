@@ -8,7 +8,7 @@ export const LGALIST = [
     name: "Apapa",
   },
   {
-    id: 2,
+    id: 21,
     name: "Agege",
   },
   {
