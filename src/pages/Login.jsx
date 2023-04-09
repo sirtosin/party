@@ -234,6 +234,9 @@ export const OldMember = ({
 }) => (
   <>
     <form className="w-3/4 my-4 lg:w-1/2 lg:ml-32">
+      <h2 className="my-2 font-semibold text-gray-500 capitalize">
+        fields with <span className="required"> </span> are required
+      </h2>
       {view === 1 ? (
         <>
           <TextInput
@@ -298,7 +301,7 @@ export const OldMember = ({
             onChange={(e) => setWard(e.target.value)}
           >
             <option value="">select ward</option>
-            {WardList2.map((ward) => (
+            {WardList2.map((ward) =>
               ward.lga === LGA
                 ? ward.name.map((res) => (
                     <option key={res} value={res}>
@@ -306,7 +309,7 @@ export const OldMember = ({
                     </option>
                   ))
                 : null
-            ))}
+            )}
           </select>
           {/* <Selector
             data={WardList2}
