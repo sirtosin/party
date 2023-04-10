@@ -338,7 +338,13 @@ export const OldMember = ({
             data={politicalParty2}
             name="previous party"
           />
-
+          <TextInput
+            placeholder="input your image"
+            onChange={handleFileInput}
+            name="image upload"
+            accept="image/*"
+            type="file"
+          />
           {/* <Selector
             data={WardList2}
             selected={ward}
