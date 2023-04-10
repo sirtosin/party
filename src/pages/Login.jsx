@@ -51,7 +51,7 @@ export const Login = memo(() => {
     else toast.error("Enter membership number to proceed");
   };
  useMemo(() => {
-  memberNumber.length > 7 && toast.error("Invalid Membership Number") 
+  memberNumber >= 7999 && toast.error("Invalid Membership Number") 
   console.log('memberNumber', memberNumber)
  }, [memberNumber])
 
