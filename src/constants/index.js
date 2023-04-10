@@ -1595,3 +1595,25 @@ export const politicalParty = [
 'Young Democratic Party (YDP)',
 'Young Progressive Party (YPP)',
 ]
+
+
+export const politicalParty2 =[
+'None',
+'Accord Party (AP)',
+'Action Alliance (AA)',
+'Action Democratic Party (ADP)',
+'African Action Congress (AAC)',
+'African Democratic Congress (ADC)',
+'All Progressives Congress (APC)',
+'All Progressives Grand Alliance (APGA)',
+'Allied Peoples Movement (APM)',
+'Boot Party (BP)',
+'National Rescue Movement (NRM)',
+'New Nigeria Peoples Party (NNPP)',
+'Peoples Democratic Party (PDP)',
+'Peoples Redemption Party (PRP)',
+'Social Democratic Party (SDP)',
+'Young Democratic Party (YDP)',
+'Young Progressive Party (YPP)',
+'Zenith Labour Party (ZLP)',
+]

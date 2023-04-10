@@ -31,7 +31,7 @@ export const Excos = () => {
         Meet our representatives
       </h2>
       <p className="text-center text-gray-500">Team of winners and leaders</p>
-      <div className="flex items-center justify-center mt-10 flex-col space-y-5">
+      <div className="flex items-center justify-center mt-10 flex-col space-y-5 mx-10">
         <Selector
           data={LGALIST}
           selected={LGA}
@@ -55,7 +55,7 @@ export const Excos = () => {
           )}
         </select>
       </div>
-      <section className="flex flex-wrap items-center justify-evenly my-8">
+      <section className="flex flex-wrap items-center justify-evenly my-8 mx-10">
         {ward &&
           excos.map((info) => (
             <div

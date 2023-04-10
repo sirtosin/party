@@ -4,7 +4,7 @@ import { HiBadgeCheck } from "react-icons/hi";
 
 export const Mission = () => {
   return (
-    <div className="mx-10 my-5">
+    <div className="mx-4 sm:mx-10 my-5">
       <h2 className="capitalize text-2xl lg:text-4xl font-black text-center">
         party mission
       </h2>
@@ -76,7 +76,7 @@ export const Mission = () => {
         policies aimed at but not, limited to the following:
       </p>
       {missionData.map((info) => (
-        <p key={info} className="my-5 flex items-center space-x-8">
+        <p key={info} className="my-5 flex items-center space-x-8 text-sm">
           <HiBadgeCheck className="text-green-500 mr-3" />
           {info}
         </p>

@@ -4,8 +4,8 @@ import {HiBadgeCheck} from 'react-icons/hi'
 
 export const Vision = () => {
   return (
-    <div className='mx-10 my-5'>
-      <h2 className='capitalize text-2xl lg:text-4xl font-black text-center'>
+    <div className="mx-4 sm:mx-10 my-5">
+      <h2 className="capitalize text-2xl lg:text-4xl font-black text-center">
         party vision
       </h2>
       <p className="my-3">
@@ -19,12 +19,12 @@ export const Vision = () => {
         Consequently, the vision of the Labour Party is to urgently transform
         all facets of the Nigerian nation with a view to:
       </p>
-      {visionData.map((info) => 
-      <p key={info} className='my-5 flex items-center space-x-4'>
-<HiBadgeCheck className='text-green-500 mr-3'/>
-        {info}
-      </p>
-      )}
+      {visionData.map((info) => (
+        <p key={info} className="my-5 flex items-center space-x-4 text-sm">
+          <HiBadgeCheck className="text-green-500 mr-3 " />
+          {info}
+        </p>
+      ))}
     </div>
   );
 }
