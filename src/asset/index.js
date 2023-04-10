@@ -7,5 +7,6 @@ import loading from "./loading.png";
 import swiper1 from "./swiper1.jpg";
 import swiper from "./swiper.jpg";
 import thanks from "./thanks.avif";
+import Chairman from "./chairman.jpeg";
 
-export { hero, guy, logo, bg, hero1, loading, swiper, swiper1,thanks };
+export { hero, guy, logo, bg, hero1, loading, swiper, swiper1,thanks ,Chairman};
