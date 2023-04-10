@@ -24,13 +24,13 @@ export const About = memo(() => {
         Meet our team
       </h2>
       <p className="text-center text-gray-500">Team of winners and leaders</p>
-      <div className="flex items-center justify-end mr-10">
+      {/* <div className="flex items-center justify-end mr-10">
         <Button
           color="gray"
           onClick={handleNavigate}
           title="view excos by ward"
         />
-      </div>
+      </div> */}
       <section className="flex flex-wrap items-center justify-evenly my-8">
         {EXCOS.slice(0, 10).map((info) => (
           <div

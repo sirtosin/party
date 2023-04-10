@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput } from "../components/TextInput";
 import { Button } from "../components/Button";
@@ -7,7 +7,12 @@ import { Header } from "../components/Header";
 import { SelectInput } from "../components/SelectInput";
 import BasicModal from "../components/Modal";
 import { addMember } from "../services/user";
-import { LGALIST, WardList2, politicalParty, politicalParty2 } from "../constants";
+import {
+  LGALIST,
+  WardList2,
+  politicalParty,
+  politicalParty2,
+} from "../constants";
 import { Selector } from "../components/Dropdown";
 import { toast } from "react-hot-toast";
 
@@ -15,7 +20,7 @@ export const Login = memo(() => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
   const [party, setParty] = useState("");
-  const [memberNumber, setMemberNumber] = useState('')
+  const [memberNumber, setMemberNumber] = useState("");
   const [LGA, setLGA] = useState("");
   const [ward, setWard] = useState("");
   const navigate = useNavigate();
@@ -28,7 +33,8 @@ export const Login = memo(() => {
     sex: "",
     name: "",
     occupation: "",
-    address: "",previous_Party:'',
+    address: "",
+    previous_Party: "",
     MembershipNumber: "",
     state: "Lagos",
   });
@@ -44,6 +50,11 @@ export const Login = memo(() => {
     if (memberNumber) setView(data);
     else toast.error("Enter membership number to proceed");
   };
+ useMemo(() => {
+  memberNumber.length > 7 && toast.error("Invalid Membership Number") 
+  console.log('memberNumber', memberNumber)
+ }, [memberNumber])
+
 
   const onOptionChange = (e) => {
     setTopping(e.target.value);
@@ -104,19 +115,18 @@ export const Login = memo(() => {
       ward: ward,
       LGA: LGA,
       occupation: inputFile.occupation,
-    party:party,
+      party: party,
       sex: inputFile.sex,
     };
 
-    if (
-      payload.name === "" ||
-      payload.sex === "" ||
-      payload.ward === "" ||
-      payload.address === "" ||
-      payload.phone === ""
-    ) {
-      toast.error("fill all fields");
-    } else {
+    if (payload.name === "") toast.error("Please input your name");
+    else if (payload.sex === "") toast.error("Please select sex type");
+    else if (payload.address === "") toast.error("Please input your address");
+    else if (payload.image === "") toast.error("Please upload your image");
+    else if (payload.party === "") toast.error("Please input your previous party");
+    else if (payload.occupation === "") toast.error("Please input your occupation");
+    else if (payload.phone === "") toast.error("Please input your phone number");
+    else {
       navigate("/welcome");
       localStorage.setItem("user", JSON.stringify(payload));
       addMember(payload)

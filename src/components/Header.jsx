@@ -17,11 +17,14 @@ export const Header = () => {
           <img className="h-7" src={logo} alt="" />
         </Link>
         <div className="flex items-center space-x-10 ">
-        <Link to="/">
+          <Link to="/">
             <p className="cursor-pointer hover:text-gray-500">Home</p>{" "}
           </Link>
           <Link to="/about">
             <p className="cursor-pointer hover:text-gray-500">About Us</p>{" "}
+          </Link>
+          <Link to="/excos">
+            <p className="cursor-pointer hover:text-gray-500">Find your ward</p>{" "}
           </Link>
           <Link to="/membership">
             <Button
@@ -53,6 +56,11 @@ export const Header = () => {
           <header className="absolute flex flex-col items-center justify-center p-10 space-y-5 text-white bg-gray-900 rounded-lg top-16 right-10 ">
             <Link to="/about">
               <p className="cursor-pointer hover:text-gray-500">our team</p>{" "}
+            </Link>
+            <Link to="/excos">
+              <p className="cursor-pointer hover:text-gray-500">
+                Find your ward
+              </p>{" "}
             </Link>
             <Link to="/membership">
               <p className="cursor-pointer hover:text-gray-500">

@@ -15,18 +15,18 @@ export const Excos = () => {
 
   useEffect(() => {
     setExcos(handleShuffle(EXCOS));
-  }, [ward]);
+  }, [ward,LGA]);
 
   return (
     <div>
       <Header />
-      <img
+      {/* <img
         loading="lazy"
         className="w-full sm:h-[300px] lg:h-[400px] object-cover mb-10"
         src="https://images.pexels.com/photos/11022648/pexels-photo-11022648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         alt=""
-      />
-      <Mission />
+      /> */}
+      {/* <Mission /> */}
       <h2 className="text-2xl lg:text-4xl font-black text-center mt-10">
         Meet our representatives
       </h2>
@@ -56,7 +56,7 @@ export const Excos = () => {
         </select>
       </div>
       <section className="flex flex-wrap items-center justify-evenly my-8 mx-10">
-        {ward &&
+        {ward || LGA ?
           excos.map((info) => (
             <div
               key={info.id}
@@ -73,7 +73,7 @@ export const Excos = () => {
                 <p className="text-xs ">{info.tilte}</p>
               </div>
             </div>
-          ))}
+          ))  : null}
       </section>
 
       <Footer />
