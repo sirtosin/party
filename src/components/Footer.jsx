@@ -20,7 +20,7 @@ export const Footer = () => {
               {" "}
             Phone: <br  className='flex sm:hidden'/> 08074224681 , 08074224880
             </p>
-            <p className="text-xs capitalize transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-max lg:text-lg hover:animate-bounce">
+            <p className="text-xs transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-max lg:text-lg hover:animate-bounce">
               {" "}
               Email: <br className='flex sm:hidden' /> info@labourpartylagos.ng
             </p>
