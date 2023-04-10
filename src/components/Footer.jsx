@@ -7,10 +7,10 @@ export const Footer = () => {
   return (
     <footer className="bottom-0 flex flex-col items-start w-full p-5 bg-black/20 sm:p-10 lg:items-center lg:flex-row lg:justify-around ">
       <Link to="/">
-        <img src={logo} className='h-[60px] mt-5 sm:mt-0 lg:w-full' alt="" />
+        <img src={logo} className="h-[60px] mt-5 sm:mt-0 lg:w-full" alt="" />
       </Link>
 
-      <div className="flex flex-col sm:items-center sm:flex-row sm:justify-between">
+      <div className="flex flex-col sm:flex-row sm:justify-between">
         <div className="flex flex-col pl-10 m-3 space-y-4">
           <h2 className="text-sm border-b-2 lg:text-xl border-gray-50 w-max ">
             contact
@@ -18,14 +18,15 @@ export const Footer = () => {
           <div className="flex flex-col space-y-4">
             <p className="text-xs capitalize transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-max lg:text-lg hover:animate-bounce">
               {" "}
-              +234 (0) 8140009000
+            Phone: <br  className='flex sm:hidden'/> 08074224681 , 08074224880
             </p>
             <p className="text-xs capitalize transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-max lg:text-lg hover:animate-bounce">
               {" "}
-              info@bold-themes.com
+              Email: <br className='flex sm:hidden' /> info@labourpartylagos.ng
             </p>
-            <p className="text-xs capitalize transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-max lg:text-lg hover:animate-bounce">
-              665 Street, lagos City, IKD 10065
+            <p className="text-xs capitalize transition-all duration-150 ease-in-out border-gray-300 cursor-pointer hover:border-b-2 w-[200px] lg:text-lg hover:animate-bounce">
+              Office Address:  <br  className='flex sm:hidden'/> 59 Oduduwa Way, Ikeja GRA, Lagos, Nigeria. Contact
+              Number
             </p>
           </div>
         </div>{" "}
